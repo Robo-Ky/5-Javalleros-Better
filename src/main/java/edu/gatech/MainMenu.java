@@ -17,13 +17,24 @@ public class MainMenu extends Activity {
         Button btn1 = (Button) findViewById(R.id.accountBut);
         btn1.setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
-        		Log.i("clicks","Clicked register account");
+        		Log.i("clicks","You Clicked Login");
                 Intent i=new Intent(
                        MainMenu.this,
                        RegisterAccountActivity.class);
                 startActivity(i);
         	}
         });
+        
+        Button btn2 = (Button) findViewById(R.id.viewAccounts);
+        btn2.setOnClickListener(new View.OnClickListener() {
+        	public void onClick(View v){
+        	Intent i = new Intent(MainMenu.this, AccountsPageActivity.class);
+        	startActivity(i);
+        		
+        	}
+        		
+        });
+        
         
 	}
 
@@ -33,5 +44,7 @@ public class MainMenu extends Activity {
 		getMenuInflater().inflate(R.menu.main_menu, menu);
 		return true;
 	}
+	
+	
 
 }
