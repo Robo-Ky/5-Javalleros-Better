@@ -12,6 +12,7 @@ public class DBHandler {
 	private SQLiteDatabase database;
 	private static final String TABLENAME = "Users";
 	private static final String TABLENAME_2 = "Accounts";
+	private static String loggedInEmail = User.getLoggedInEmail();
 	
 	public DBHandler(Context context){
 		helper = new DBHelper(context);
@@ -58,10 +59,16 @@ public class DBHandler {
 		return myCursor;
 	}
 	
-	public String getAllAccounts(String email) {
+	public String getAllAccounts() {
 		Log.d("getAllAccounts", "Entering getAllAccounts()");
-		Cursor myCursor;
-		return "";
+		Cursor myCursor = database.rawQuery("select * from Accounts where Email=?", new String[]{loggedInEmail});
+		myCursor.moveToFirst();
+		String end = "";
+		while (!myCursor.isAfterLast()) {
+			end += myCursor.getString(1);
+			myCursor.moveToNext();
+		}
+		return end;
 	}
 }
 

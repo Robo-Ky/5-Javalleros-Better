@@ -12,5 +12,6 @@
     <string name="prompt_accname">Account Name</string>
     <string name="prompt_amount">Initial amount</string>
     <string name="button_register_account">Register Account</string>
+    <string name="Account1">Account1</string>
 
 </resources>

@@ -25,14 +25,14 @@ public class MainMenu extends Activity {
         	}
         });
         
-        Button btn2 = (Button) findViewById(R.id.viewAccounts);
+        Button btn2 = (Button) findViewById(R.id.accountBut);
         btn2.setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v){
-        	Intent i = new Intent(MainMenu.this, AccountsPageActivity.class);
+        	Intent i = new Intent(
+        			MainMenu.this,
+        			AccountsPageActivity.class);
         	startActivity(i);
-        		
         	}
-        		
         });
         
         

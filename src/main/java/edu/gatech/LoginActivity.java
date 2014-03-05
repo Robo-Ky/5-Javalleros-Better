@@ -234,6 +234,7 @@ public class LoginActivity extends Activity {
 			showProgress(false);
 
 			if (success) {
+				User.getInstance(mEmail);
 				Intent i=new Intent(
 	                       LoginActivity.this,
 	                       HomePageActivity.class);
