@@ -1,6 +1,5 @@
 package main.java.edu.gatech;
 
-import edu.gatech.WelcomePage;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
@@ -148,7 +147,7 @@ public class RegisterActivity extends Activity {
 			if (success) {
 				Intent i=new Intent(
 	                       RegisterActivity.this,
-	                       HomePageActivity.class);
+	                       LoginActivity.class);
 	                startActivity(i);
 			} else {
 				rPasswordField

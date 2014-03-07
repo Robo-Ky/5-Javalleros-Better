@@ -1,6 +1,5 @@
 package main.java.edu.gatech;
 
-import edu.gatech.WelcomePage;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
@@ -21,13 +20,10 @@ import android.widget.EditText;
 import android.widget.TextView;
 
 public class RegisterAccountActivity extends Activity {
-	private String rAccName, loadedEmail;
+	private String rAccName;
+	private static String loggedInEmail = User.getLoggedInEmail();
 	private EditText rAccNameField;
 	private AccountRegisterTask accRegTask;
-	
-	public RegisterAccountActivity(String loadedEmail) {
-		this.loadedEmail = loadedEmail;
-	}
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +77,7 @@ public class RegisterAccountActivity extends Activity {
 
 		@Override
 		protected Boolean doInBackground(Void... args) {
-			database.createAccount(loadedEmail, rAccName);
+			database.createAccount(loggedInEmail, rAccName);
 			return true;
 		}
 		

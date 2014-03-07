@@ -15,6 +15,15 @@
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="60dp"
-        android:text="Create an Account" />
+        android:text="@string/button_register_account" />
+
+    <Button
+        android:id="@+id/accountsViewButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/accountBut"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="36dp"
+        android:text="@string/button_view_accounts" />
 
 </RelativeLayout>

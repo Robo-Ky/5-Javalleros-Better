@@ -13,5 +13,8 @@
     <string name="prompt_amount">Initial amount</string>
     <string name="button_register_account">Register Account</string>
     <string name="Account1">Account1</string>
+    <string name="empty_label">None</string>
+    <string name="accounts_label">Accounts</string>
+    <string name="button_view_accounts">View Accounts</string>
 
 </resources>

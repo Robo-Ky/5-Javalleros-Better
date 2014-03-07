@@ -17,7 +17,7 @@ public class MainMenu extends Activity {
         Button btn1 = (Button) findViewById(R.id.accountBut);
         btn1.setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v) {
-        		Log.i("clicks","You Clicked Login");
+        		Log.i("clicks","Clicked register account");
                 Intent i=new Intent(
                        MainMenu.this,
                        RegisterAccountActivity.class);
@@ -25,13 +25,14 @@ public class MainMenu extends Activity {
         	}
         });
         
-        Button btn2 = (Button) findViewById(R.id.accountBut);
+        Button btn2 = (Button) findViewById(R.id.accountsViewButton);
         btn2.setOnClickListener(new View.OnClickListener() {
         	public void onClick(View v){
-        	Intent i = new Intent(
-        			MainMenu.this,
-        			AccountsPageActivity.class);
-        	startActivity(i);
+        		Log.i("clicks","Clicked view accounts");
+        		Intent i = new Intent(
+        				MainMenu.this,
+        				AccountsPageActivity.class);
+        		startActivity(i);
         	}
         });
         

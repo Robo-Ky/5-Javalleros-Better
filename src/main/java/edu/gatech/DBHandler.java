@@ -31,8 +31,6 @@ public class DBHandler {
 	
 	public Cursor selectUser(String email, String password){
 		Log.d("selectUser", "Entering selectUser()");
-		//String[] cols = new String[] {"Email", "Password"};
-		String[] vals = new String[] {email, password}; 
 		Cursor myCursor = database.rawQuery("select * from Users where Email=? and Password=?" ,new String [] {email, password});
 		if (myCursor != null) {
 			Log.d("selectUser", "myCursor != null");
@@ -52,7 +50,7 @@ public class DBHandler {
 	
 	public Cursor selectAccount(String email, String accountName) {
 		Log.d("selectAccount", "Entering selectAccount");
-		Cursor myCursor = database.rawQuery("select * from Accounts where Email=? and AccountName=?", new String[]{email, accountName});
+		Cursor myCursor = database.rawQuery("select * from " +  TABLENAME_2 + " where Email=? and AccountName=?", new String[]{email, accountName});
 		if (myCursor != null) {
 			Log.d("selectAccount", "myCursor != null");
 		}
@@ -61,12 +59,17 @@ public class DBHandler {
 	
 	public String getAllAccounts() {
 		Log.d("getAllAccounts", "Entering getAllAccounts()");
-		Cursor myCursor = database.rawQuery("select * from Accounts where Email=?", new String[]{loggedInEmail});
-		myCursor.moveToFirst();
+		Cursor myCursor = database.rawQuery("select * from Accounts", null);
 		String end = "";
-		while (!myCursor.isAfterLast()) {
-			end += myCursor.getString(1);
-			myCursor.moveToNext();
+		if (myCursor.moveToFirst()) {
+			while (!myCursor.isAfterLast()) {
+				String emailKey = myCursor.getString(myCursor.getColumnIndex("Email"));
+				if (emailKey.equals(loggedInEmail)) {
+					String name = myCursor.getString(myCursor.getColumnIndex("AccountName"));
+					end += name + "\n";
+				}
+				myCursor.moveToNext();
+			}
 		}
 		return end;
 	}

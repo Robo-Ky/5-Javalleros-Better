@@ -1,6 +1,8 @@
 package main.java.edu.gatech;
 
-public class Account {
+import java.io.Serializable;
+
+public class Account implements Serializable {
 	private String name;
 	private double balance;
 }
