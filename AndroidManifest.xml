@@ -16,17 +16,16 @@
         <activity
             android:name="edu.gatech.WelcomePage"
             android:label="@string/app_name" >
-            
         </activity>
         <activity
             android:name="main.java.edu.gatech.LoginActivity"
-            android:label="@string/title_activity_login">
+            android:label="@string/title_activity_login" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-            android:windowSoftInputMode="adjustResize|stateVisible" >
+            android:windowSoftInputMode="adjustResize|stateVisible" >
         </activity>
         <activity android:name="main.java.edu.gatech.HomePageActivity" >
         </activity>
@@ -42,7 +41,20 @@
             android:name="main.java.edu.gatech.RegisterAccountActivity"
             android:label="@string/title_activity_register_account" >
         </activity>
-        <activity android:name="main.java.edu.gatech.AccountsPageActivity"></activity>
+        <activity android:name="main.java.edu.gatech.AccountsPageActivity" >
+        </activity>
+        <activity
+            android:name="main.java.edu.gatech.TransactionActivity"
+            android:label="@string/title_activity_transaction" >
+        </activity>
+        <activity
+            android:name="main.java.edu.gatech.AddBalance"
+            android:label="@string/title_activity_add_balance" >
+        </activity>
+        <activity
+            android:name="main.java.edu.gatech.SubtractBalance"
+            android:label="@string/title_activity_subtract_balance" >
+        </activity>
     </application>
 
 </manifest>

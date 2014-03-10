@@ -64,13 +64,14 @@ public class DBHandler {
 		if (myCursor.moveToFirst()) {
 			while (!myCursor.isAfterLast()) {
 				String emailKey = myCursor.getString(myCursor.getColumnIndex("Email"));
-				if (emailKey.equals(loggedInEmail)) {
+				if (emailKey.equals(User.getLoggedInEmail())) {
 					String name = myCursor.getString(myCursor.getColumnIndex("AccountName"));
 					end += name + "\n";
 				}
 				myCursor.moveToNext();
 			}
 		}
+		Log.d("Accounts: ", end);
 		return end;
 	}
 }

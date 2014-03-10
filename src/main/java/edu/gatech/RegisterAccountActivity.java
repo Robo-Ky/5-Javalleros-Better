@@ -21,7 +21,7 @@ import android.widget.TextView;
 
 public class RegisterAccountActivity extends Activity {
 	private String rAccName;
-	private static String loggedInEmail = User.getLoggedInEmail();
+	protected String loggedInEmail = User.getLoggedInEmail();
 	private EditText rAccNameField;
 	private AccountRegisterTask accRegTask;
 
@@ -78,6 +78,7 @@ public class RegisterAccountActivity extends Activity {
 		@Override
 		protected Boolean doInBackground(Void... args) {
 			database.createAccount(loggedInEmail, rAccName);
+			Log.d("Accounts:", database.getAllAccounts());
 			return true;
 		}
 		
