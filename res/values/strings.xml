@@ -10,7 +10,7 @@
     <string name="title_activity_main_menu">MainMenu</string>
     <string name="title_activity_register_account">RegisterAccountActivity</string>
     <string name="prompt_accname">Account Name</string>
-    <string name="prompt_amount">Initial amount</string>
+    <string name="prompt_amount">Amount</string>
     <string name="button_register_account">Register Account</string>
     <string name="Account1">Account1</string>
     <string name="empty_label">None</string>

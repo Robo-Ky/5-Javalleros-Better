@@ -43,6 +43,9 @@
             android:label="@string/title_activity_register_account" >
         </activity>
         <activity android:name="main.java.edu.gatech.AccountsPageActivity"></activity>
+        <activity android:name="main.java.edu.gatech.AddBalance"></activity>
+        <activity android:name="main.java.edu.gatech.SubtractBalance"></activity>
+        <activity android:name="main.java.edu.gatech.TransactionActivity"></activity>
     </application>
 
 </manifest>

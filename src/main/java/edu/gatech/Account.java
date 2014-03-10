@@ -1,8 +1,24 @@
 package main.java.edu.gatech;
 
-import java.io.Serializable;
-
-public class Account implements Serializable {
+public class Account {
 	private String name;
-	private double balance;
+	private float balance;
+	
+	public Account(String name) {
+		this.name = name;
+		balance = 0;
+	}
+	
+	public Account(String name, float balance) {
+		this.name = name;
+		this.balance = balance;
+	}
+	
+	public float getBalance() {
+		return balance;
+	}
+	
+	public String getName() {
+		return name;
+	}
 }

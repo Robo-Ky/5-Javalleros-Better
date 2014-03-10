@@ -40,12 +40,24 @@ public class DBHandler {
 	
 	public long createAccount(String email, String accountName) {
 		Log.d("createAccount", "Entering createAccount()");
+		if (tableExists(accountName)) {
+			return 0;
+		}
 		ContentValues values = new ContentValues();
 		values.put("Email", email);
 		values.put("AccountName", accountName);
 		Log.d("createAccount", "Creating account: " + email + " and " + accountName);
 		long temp = database.insert(TABLENAME_2, null, values);
+		
 		return temp;
+	}
+	
+	private boolean tableExists(String tableName) {
+		Cursor myCursor = database.rawQuery("select DISTINCT tbl_name from Minimint where tbl_name = '" + tableName + "'", null);
+		if (myCursor != null) {
+			return true;
+		}
+		return false;
 	}
 	
 	public Cursor selectAccount(String email, String accountName) {

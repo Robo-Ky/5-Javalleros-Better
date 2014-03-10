@@ -27,6 +27,12 @@ public class DBHelper extends SQLiteOpenHelper {
 			database.endTransaction();
 		}
 	}
+	
+	public void createTableTransactions(Account acc, SQLiteDatabase database) {
+		String NAME = acc.getName();
+		String LOG_TABLE_CREATE = "Create table " + NAME + "(Type text not null, Source text, Destination text, Amount real)";
+		database.execSQL(LOG_TABLE_CREATE);
+	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase arg0, int arg1, int arg2) {
