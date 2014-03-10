@@ -32,4 +32,21 @@
         android:text="@string/empty_label"
         android:textAppearance="?android:attr/textAppearanceMedium" />
 
+    <Spinner
+        android:id="@+id/accountsSpinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView2"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="24dp" />
+
+    <Button
+        android:id="@+id/transButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/accountsSpinner"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="82dp"
+        android:text="@string/button_transaction" />
+
 </RelativeLayout>

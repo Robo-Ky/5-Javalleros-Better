@@ -10,18 +10,18 @@ import android.widget.Button;
 import android.widget.EditText;
 
 public class AddBalance extends Activity {
+	private DBHandler database = new DBHandler(AddBalance.this);
+	private EditText amountBox = (EditText) findViewById(R.id.addBalanceBox);
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_add_balance);
-		EditText amountBox = (EditText) findViewById(R.id.addBalanceBox);
 		Button addButton = (Button) findViewById(R.id.addBut);
 		addButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
-				// TODO Auto-generated method stub
-				
+				attemptAdd();
 			}
 		});
 		Button cancelBut = (Button) findViewById(R.id.cancelBut2);
@@ -29,6 +29,7 @@ public class AddBalance extends Activity {
 			@Override
 			public void onClick(View v) {
 				Log.i("clicks", "Clicked return button");
+				AccessingAccount.finish();
 				Intent i = new Intent(AddBalance.this, AccountsPageActivity.class);
 				startActivity(i);
 			}
@@ -42,5 +43,21 @@ public class AddBalance extends Activity {
 		return true;
 	}
 	
-
+	private void attemptAdd() {
+		String adding = amountBox.getText().toString();
+		boolean added = false;
+		if (adding != null) {
+			float amount = Float.valueOf(adding);
+			if (amount > 0) {
+				AccessingAccount.addFunds(amount);
+				AccessingAccount.setTrans(new Transaction(null, AccessingAccount.getAccName(), amount));
+				database.setBalanceAndLog();
+				added = true;
+			}
+		}
+		if (!added) {
+			amountBox.setError("Failed to add funds.");
+			amountBox.requestFocus();
+		}
+	}
 }

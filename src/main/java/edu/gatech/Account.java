@@ -21,4 +21,12 @@ public class Account {
 	public String getName() {
 		return name;
 	}
+	
+	public void addFunds(float amount) {
+		balance += amount;
+	}
+	
+	public void subtractFunds(float amount) {
+		balance -= amount;
+	}
 }

@@ -8,12 +8,13 @@ import android.database.Cursor;
 import android.util.Log;
 import android.view.Menu;
 import android.view.View;
+import android.widget.SimpleCursorAdapter;
 import android.widget.Button;
 import android.widget.TextView;
+import java.util.List;
 
 public class AccountsPageActivity extends Activity {
-	
-	private ShowAccountsTask accShowTask;
+	private DBHandler database = new DBHandler(AccountsPageActivity.this);
 	
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -28,8 +29,14 @@ public class AccountsPageActivity extends Activity {
 				startActivity(i);
 			}
 		});
-		accShowTask = new ShowAccountsTask();
-		accShowTask.execute((Void) null);
+		Button btn2 = (Button) findViewById(R.id.transButton);
+		btn2.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				Intent i = new Intent(AccountsPageActivity.this, TransactionActivity.class);
+				startActivity(i);
+			}
+		});
 	}
 
 	@Override
@@ -37,26 +44,8 @@ public class AccountsPageActivity extends Activity {
 		// Inflate the menu; this adds items to the action bar if it is present.
 		return true;
 	}
-
-	private class ShowAccountsTask extends AsyncTask<Void, Void, Boolean> {
-		private DBHandler database = new DBHandler(AccountsPageActivity.this);
-		private TextView accountsView = (TextView) findViewById(R.id.textView2);
-
-		@Override
-		protected Boolean doInBackground(Void... arg0) {
-			String accountList = database.getAllAccounts();
-			accountsView.setText(accountList);
-			return true;
-		}
-		
-		@Override
-		protected void onPostExecute(final Boolean success) {
-			accShowTask = null;
-		}
-		
-		@Override
-		protected void onCancelled() {
-			accShowTask = null;
-		}
+	
+	private void setSpinnerElements() {
+		List<String> accounts = database.getAllAccounts();
 	}
 }

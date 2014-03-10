@@ -5,6 +5,7 @@ import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.util.Log;
+import java.util.ArrayList;
 
 public class DBHandler {
 	
@@ -46,9 +47,11 @@ public class DBHandler {
 		ContentValues values = new ContentValues();
 		values.put("Email", email);
 		values.put("AccountName", accountName);
+		values.put("Balance", 0);
 		Log.d("createAccount", "Creating account: " + email + " and " + accountName);
 		long temp = database.insert(TABLENAME_2, null, values);
-		
+		String createLog = "Create table " + accountName + "(Type text not null, Amount real, Destination text)";
+		database.execSQL(createLog);
 		return temp;
 	}
 	
@@ -69,21 +72,33 @@ public class DBHandler {
 		return myCursor;
 	}
 	
-	public String getAllAccounts() {
+	public ArrayList<String> getAllAccounts() {
 		Log.d("getAllAccounts", "Entering getAllAccounts()");
 		Cursor myCursor = database.rawQuery("select * from Accounts", null);
-		String end = "";
+		ArrayList<String> accounts = new ArrayList();
 		if (myCursor.moveToFirst()) {
-			while (!myCursor.isAfterLast()) {
+			while (myCursor.moveToNext()) {
 				String emailKey = myCursor.getString(myCursor.getColumnIndex("Email"));
 				if (emailKey.equals(loggedInEmail)) {
 					String name = myCursor.getString(myCursor.getColumnIndex("AccountName"));
-					end += name + "\n";
+					accounts.add(name);
 				}
 				myCursor.moveToNext();
 			}
 		}
-		return end;
+		return accounts;
+	}
+	
+	public void setBalanceAndLog() {
+		String accName = AccessingAccount.getAccName();
+		Transaction trans = AccessingAccount.getTrans();
+		String updateQuery = "update Accounts set Balance=" + AccessingAccount.getBalance() + "where Id='" + User.getLoggedInEmail() + "'";
+		database.execSQL(updateQuery);
+		ContentValues values = new ContentValues();
+		values.put("Type", trans.getType());
+		values.put("Amount", trans.getAmount());
+		values.put("Destination", trans.getDest());
+		database.insert(accName, null, values);
 	}
 }
 

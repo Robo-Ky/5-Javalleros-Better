@@ -9,7 +9,7 @@ public class DBHelper extends SQLiteOpenHelper {
 	private static final String DATABASE_NAME = "Minimint";
 	private static final String TABLE_ACCOUNTS = "Accounts";
 	private static final String DATABASE_CREATE = "Create table Users(Email text primary key, Password text not null)";
-	private static final String DATABASE_ACCOUNTS_CREATE = "Create table " +  TABLE_ACCOUNTS + "(Email text, AccountName text not null)";
+	private static final String DATABASE_ACCOUNTS_CREATE = "Create table " +  TABLE_ACCOUNTS + "(Email text, AccountName text not null, Balance real)";
 	
 	public DBHelper(Context context){
 		 super(context, DATABASE_NAME, null, DATABASE_VERSION);

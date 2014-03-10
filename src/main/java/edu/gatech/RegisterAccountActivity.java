@@ -77,7 +77,10 @@ public class RegisterAccountActivity extends Activity {
 
 		@Override
 		protected Boolean doInBackground(Void... args) {
-			database.createAccount(loggedInEmail, rAccName);
+			long wasCreated = database.createAccount(loggedInEmail, rAccName);
+			if (wasCreated == 0) {
+				return false;
+			}
 			return true;
 		}
 		
